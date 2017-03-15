@@ -65,13 +65,13 @@ print(opt$directory)
 # cat(paste0("You requested to run tests in ",opt$directory,"\nTrying to go to directory\ncd ",basedir,"\nand build and test package\n",packagedir,"\n"))
 if(opt$AdapteR=="require"){
     if(!grepl("^jdbc",opt$host))
-        library(RODBC)
+        ##library(RODBC)
     ##phani: do we need to set this?
     # setwd(basedir)
     require("AdapteR")
 } else {
     if(!grepl("^jdbc",opt$host))
-        library(RODBC)
+        ##library(RODBC)
     ##phani: I think git pull should be done outside the sript
     ## As this might change my working branch
     # cat(paste0("running git pull\n"))
