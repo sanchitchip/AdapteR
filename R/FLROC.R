@@ -51,6 +51,7 @@ roc.FLVector <- function (response, predictor, ...)
 #' TO-DO:- implementation in rocgeneric
 #' roctbl <- FLTable("tblROCcurve", obs_id_colname = "ObsID")
 #' rocmod <- roc.FLTable(ActualVal~ProbVal, data = roctbl)
+#' @export
 roc.FLTable <- function(formula,data,... ){
 ##    browser()
     vcallObject <- match.call()

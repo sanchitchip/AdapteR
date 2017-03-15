@@ -16,7 +16,6 @@ NULL
 #' @method plot FLLDA. 
 #' @method predict FLLDA. 
 #' @export
-
 setClass(
     "FLLDA",
     contains="FLRegr",
@@ -121,6 +120,7 @@ lda.FLpreparedData <- function(formula, data,...)
 lda.FLTable <- lda.FLpreparedData
 
 
+#' @export
 lda.FLTableMD <- lda.FLpreparedData
 
 
@@ -373,6 +373,7 @@ c WHERE d.",var[[1]]," = c.ObsID AND d.",var[[2]]," <> -1 GROUP BY c.val, d.",va
 
 
 
+#' @export
 coefficients.FLLDA <- function(object)
 {
     if( object@results$familytype %in% "lda"){
@@ -403,6 +404,7 @@ coefficients.FLLDA <- function(object)
 }
 ##posterior probablity:https://www.quora.com/Mathematical-Modeling-How-are-posterior-probabilities-calculated-in-linear-discriminant-analysis
 ## http://sites.stat.psu.edu/~jiali/course/stat597e/notes2/lda.pdf
+#' @export
 predict.FLLDA <- function(object){
     var <- getVariables(object@deeptable)
     if(object@results$familytype %in% "Flex")
@@ -447,6 +449,7 @@ predict.FLLDA <- function(object){
 
 
 
+#' @export
 confusion.FLLDA <- function(object){
     if(object@results$familytype %in% "Flex")
         return(object$confusion)
@@ -454,6 +457,7 @@ confusion.FLLDA <- function(object){
         return(NULL)
 }
 
+#' @export
 plot.FLLDA <- function(object){
     if(object@results$familytype %in% "lda")
         val <- predict(object)$x
