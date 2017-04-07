@@ -42,6 +42,10 @@ option_list = list(
     make_option(c("-P", "--platform"),
                 default="TD",
                 help="TDAster,TD and Hadoop supported",
+                type="character"),
+    make_option(c("-T", "--testdatabase"),
+                default="TestDatabase",
+                help="database for test files",
                 type="character")
 )
 
@@ -98,11 +102,13 @@ if(grepl("^jdbc",opt$host)){
             debug=T,
             drop=opt$dropTables,
             verbose=TRUE,
-            temporary=opt$temporary)
+            temporary=opt$temporary,
+            TestDatabase = opt$testdabase)
 } else {
     connection <- flConnect(odbcSource=opt$host,
               database=opt$database,
-              platform=opt$platform)
+              platform=opt$platform,
+              TestDatabase = opt$testdabase)
 }
 
 ## check if connection is working:
