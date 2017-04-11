@@ -1,3 +1,11 @@
+language: r
+r:
+  - oldrel
+  - release
+  - devel
+  
+cache: packages
+
 r_packages:
   - covr
 
