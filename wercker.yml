@@ -18,10 +18,10 @@ box: rocker/hadleyverse
 # http://devcenter.wercker.com/docs/pipelines/index.html
 build:
   steps:
-    - jimhester/r-dependencies
-    - jimhester/r-check
-    - jimhester/r-lintr
-    - jimhester/r-covr
+    - jimhester/r-dependencies@0.0.9
+    - jimhester/r-check@0.0.4
+    - jimhester/r-lint@0.0.3
+    - jimhester/r-coverage@0.0.3	
 
 r_packages:
   - covr
