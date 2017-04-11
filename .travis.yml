@@ -1,9 +1,5 @@
 language: r
-r:
-  - oldrel
-  - release
-  - devel
-  
+    
 cache: packages
 
 r_packages:
@@ -12,6 +8,8 @@ r_packages:
 
 r_github_packages:
   - jimhester/lintr
+  - sanchitchip/AdapteR
+
 
 after_success:
   - Rscript -e 'library(covr); codecov()'
