@@ -20,8 +20,8 @@ build:
   steps:
     - jimhester/r-dependencies@0.0.9
     - jimhester/r-check@0.0.4
-    - jimhester/lintr
-    - jimhester/covr	
+##    - jimhester/lintr
+##    - jimhester/covr	
 
 r_packages:
   - covr
