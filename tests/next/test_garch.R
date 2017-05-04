@@ -1,5 +1,3 @@
-
-
 ##
 ####GARCH Example.
 ##rv <- sqlQuery(connection, "SELECT stockreturn FROM tblbac_return")
@@ -24,7 +22,7 @@
 ##ARCHqUDT Example.
 rv <- sqlQuery(connection, "SELECT stockprice  FROM tblbac")
 flv <- as.FL(rv$stockprice)
-flmod <- garch.FLVector(flv, order = c(0,1))
+flmod <- garch(flv, order = c(0,1))
 
 FLexpect_equal(flmod$Alpha,0.9956,tolerance = .01 )
 FLexpect_equal(flmod$AIC, 4624.5320,tolerance = .01 )
