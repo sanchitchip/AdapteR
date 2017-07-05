@@ -254,6 +254,9 @@ eval_expect_equal <- function(e, Renv, FLenv,
 #' @export
 expect_eval_equal <- function(initF,FLcomputationF,RcomputationF,...)
 {
+  if(!is.null(list(...)[["platforms"]]))
+    if(!(tolower(getFLPlatform()) %in% tolower(list(...)[["platforms"]])))
+      return()
   I <- initF(...)
    FLexpect_equal(FLcomputationF(I$FL),
                  RcomputationF(I$R),
@@ -288,9 +291,10 @@ initF.FLVector <- function(n,isRowVec=FALSE,type = "float",...)
                     table_name = getRemoteTableName(databaseName=getOption("TestDatabase"),
                                                     tableName="fzzlserial"),
                     variables = list(obs_id_colname="SERIALVAL"),
-                    whereconditions=paste0(getRemoteTableName(databaseName=getOption("TestDatabase"),
-                                                              tableName = "fzzlserial",
-                                                              temporaryTable=FALSE),".SERIALVAL < ",n+1),
+                    # whereconditions=paste0(getRemoteTableName(databaseName=getOption("TestDatabase"),
+                    #                                           tableName = "fzzlserial",
+                    #                                           temporaryTable=FALSE),".SERIALVAL < ",n+1),
+                    whereconditions=paste0("SERIALVAL < ",n+1),
                     order = "")
       flv <- newFLVector(
                 select=select,
