@@ -21,25 +21,35 @@ naiveBayes.default <- function (formula,data=list(),...) {
     }
     else return(e1071::naiveBayes(formula,data,...))
 }
-
 #'fltbl <- FLTable("tblNBData", "ObsID", "VarID", "NUM_VAL")
 #'flmod <-naiveBayes(object = fltbl, formula = ~.)
 #' rtbl <- iris
+#' rtbl <- iris[iris$Species != "virginica",]
 #' rtbl$Species <- sample(x = 2, size = length(rtbl$Species), replace = TRUE)-1
-#' rtbl$Species <- as.numeric(rtbl$Species)
+#' rtbl$Species <- as.numeric(rtbl$Species)-1
 #' fliris <- as.FL(rtbl)
 #' flmod <-naiveBayes.FLTable(data = fliris, formula = Species~., laplace = 1)
-#' rmod <-naiveBayes(data = rtbl, formula = Species~.)
+#' rmod <-naiveBayes(data = rtbl, formula = Species~., laplace = 1)
 #' rtbl <- as.data.frame(Titanic)
 #' rtbl <- rtbl[,-5]
 #' rtbl <- as.data.frame(lapply(rtbl, function(i)as.numeric(i)-1))
 #' colnames(rtbl)[[1]] <- "vcl"
-#' rmod <-  naiveBayes(Survived~.,rtbl)
+#' rmod <-  naiveBayes(Survived~.,rtbl,laplace = 1)
 #' fltbl <- as.FL(rtbl)
-#' flmod <- naiveBayes.FLTable(formula = Survived~., data = fltbl)
+#' flmod <- naiveBayes.FLTable(formula = Survived~., data = fltbl,laplace = 1)
+#' data(HouseVotes84, package = "mlbench")
+#'rtbl <- HouseVotes84
+#' rtbl<-na.omit(rtbl)
+#'for (i in colnames(rtbl)){
+#'     class(rtbl[[i]]) <- "numeric"}
+#' colnames(rtbl)[[1]] <- "cl"
+#'rtbl$cl <- rtbl$cl - 1
+#' rmod <-  naiveBayes(cl~.,rtbl)
+#' 
+#' fltbl <- as.FL(rtbl)
+#' flmod <-  naiveBayes(cl~.,fltbl)
 #' @export
-naiveBayes.FLTable <- function(formula,data,laplace=0,...){
-    browser()
+naiveBayes.FLTable <- function(formula,data,laplace=0,...){   
     vcallObject <- match.call()
     deeptblname <- gen_unique_table_name("naiveb")
     vdeeptbl <- data
@@ -212,8 +222,3 @@ setMethod("show", signature("FLnaiveBayes"), function(object)
 
 #' @export
 setMethod("names", signature("FLnaiveBayes"), function(x) c("call","levels","tables", "apriori"))
-
-
-
-
-
