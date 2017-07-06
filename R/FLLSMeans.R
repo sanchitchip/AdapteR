@@ -1,3 +1,4 @@
+#' @export
 setClass("FLLSMeans",
          slots = list(call = "call",
                       table = "FLTable",
@@ -118,7 +119,7 @@ lsmeans.FLTable <- function(object, data,specs, ...){
 
 
 
-
+#' @export
 print.FLLSMeans <- function(object,...){
     print(object@results$rdf)
 }
